@@ -1,0 +1,806 @@
+---
+title: "Homework 2"
+author: "Zehua Wu"
+date: "10/13/2018"
+output: pdf_document
+---
+
+\setlength{\rightskip}{2cm}
+
+##1.
+
+An article in The Engineer ("Redesign of Suspect Wiring", June 1990) reported the results of an investigation into wiring errors on commericial aircraft that may produce faulty information to the flight crew. Such a wiring error may have been responsible for the crash of a British Midland Airways aircraft in January 1989 by causing the pilot to shut down the wrong engine. Of 1600 randomly selected aircraft, eight were found to have wiring errors that could display incorrect information to the flight crew.
+
+###a.
+
+Find a 99% confidence interval on the proportion of aircraft that have such wiring errors.
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+Since in the sample of 1600 aircrafts, 8 were found to have wiring erros, we have
+
+
+$$p=\frac{8}{1600}=0.005$$
+
+
+By definition, the 99% confidence interval is defined as:
+
+$$p-z_{\alpha/2}\sqrt{\frac{p(1-p)}{n}}\le p\le p+z_{\alpha/2}\sqrt{\frac{p(1-p)}{n}}$$
+
+Here our $alpha$ is equal to 0.1, and that gives us $z_{\alpha/2}\approx2.576$. Hence,
+
+$$0.005-2.576\times\sqrt{\frac{0.005(1-0.005)}{1600}}\le p\le0.005+2.576\times\sqrt{\frac{0.005(1-0.005)}{1600}}$$
+
+$$0.005-0.0045\le p \le 0.005+0.0045$$
+
+$$0.00045\le p \le 0.0095$$
+Thus the 99% confidence interval on the proportion of aircrft that have such wiring errors is $[0.00045, 0.0095]$.
+
+\setlength{\leftskip}{0cm}
+
+###b.
+
+Suppose we use the information in this example to provide a preliminary estimate of $p$. How large a sample would be required to produce an estimate of $p$ that we are 99% confident differs from the true value by at most 0.008?
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+Basically we want the margin of error $E$ to be at most 0.008.
+
+Since $E=z_{\alpha/2}\sqrt{\frac{p(1-p)}{n}}$, we have
+
+$$n=\left(\frac{z_{\alpha/2}}{E} \right)^2p(1-p)$$
+By substituting we get
+
+$$n=\left(\frac{2.576}{0.008}\right)^2(0.005)(1-0.005)\approx516$$
+So the sample size should be 516.
+
+\setlength{\leftskip}{0cm}
+
+###c.
+
+Suppose we did not have a preliminary estimate of $p$. How large a sample would be required if we wanted to be at least 99% confident that the sample proportion differs from the true proportion by at most 0.008 regardless of the true value of $p$?
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+Since we know that $\left(\frac{z_{\alpha/2}}{E} \right)^2$ will always remain the same, our $n$ really depends solely on $p(1-p)$. Further, we can say that when our $n$ satisfies the largest $E$, it will satisfy every other $E$. Thus, we can find the $n$ when $p(1-p)$ is at its maximum, and that gives us:
+
+$$n=\left(\frac{2.576}{0.008}\right)^2(0.5)(1-0.5)\approx25921$$
+Thus, when a preliminary estimate $p$ is not given, to be safe, we can take a sample of 25921.
+
+\setlength{\leftskip}{0cm}
+
+###d.
+
+Comment on the usefulness of preliminary information in computing the needed sample size.
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+We can see in this case that when preliminary information is given, we can easily get the required sample size, and it is rather small. However, when it is not given, we have to first determine the maximum value of $p(1-p)$, and the corresponding sample size is a lot bigger.
+
+\setlength{\leftskip}{0cm}
+
+##2.
+
+The proportion of residents in Phoenix favoring the building of toll roads to complete the freeway system is believed to be $p=0.2$. If a random sample of 10 residents shows that 1 or fewer favor this proposal, we will conclude that $p<0.3$.
+
+##a.
+
+Find the probability of type I error if the true proposition is $p=0.3$.
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+By definition, the probablity of type I error is P(Reject $H_0$|$p=0.3$). In this case we will reject $H_0$ when our sample shows that $\hat{x}$ is no bigger than 1 (i.e. $\hat{x}=0$ or 1). Thus, the probability can be written as:
+
+$$\alpha=P(\hat{x}\le 1|p=0.3)=P(\hat{x}=0|p=0.3)+P(\hat{x}=1|p=0.3)$$
+
+Since our sample follows a binomial distribution with $n=10$, we get:
+
+$$\alpha=\left( \begin{array}{c} 10 \\ 0 \end{array} \right)(0.3)^0(0.7)^{10}+\left( \begin{array}{c} 10 \\ 1 \end{array} \right)(0.3)^1(0.7)^9\approx0.1493$$
+
+The probability of type I error is approximately 0.1493.
+
+\setlength{\leftskip}{0cm}
+
+###b.
+
+Find the probability of committing a type II error with this procedure if $p=0.2$.
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+By definition, the probability of type II error is P(Fail to Reject $H_0$|$p=0.2$). In this case, we fail to reject $H_0$ whenever $\hat{x}>1$; thus, the probability is given by $P(\hat{x}>1|p=0.2)$.
+
+$$\beta=P(\hat{x}>1|p=0.2)=1-P(\hat{x}\le 1|p=0.2)$$
+
+Agian we have:
+
+$$P(\hat{x}\le 1|p=0.2)=P(\hat{x}=0|p=0.2)+P(\hat{x}=1|p=0.2)$$
+Hence,
+
+$$\beta=1-\left( \begin{array}{c} 10 \\ 0 \end{array} \right)(0.2)^0(0.8)^{10}+\left( \begin{array}{c} 10 \\ 1 \end{array} \right)(0.2)^1(0.8)^9\approx0.6241$$
+
+\setlength{\leftskip}{0cm}
+
+###c.
+
+What is the power of this procedure if the truw proportion is $p=0.2$?
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+By definition, the poer of a test is $1-\beta$, and in this case, it is approximately 0.3758. 
+
+\setlength{\leftskip}{0cm}
+
+##3.
+
+Assume that $X_1$, ..., $X_9$ are i.i.d. having Bernoulli distribution with parameter $p$. Suppose that we wish to test the hypotheses
+
+$$H_0: p=0.4$$
+
+$$H_1:p\neq0.4$$
+
+Let $Y=\sum_{i=1}^9X_i$.
+
+###a.
+
+Fund $c_1$ and $c_2$ such that $P(Y\le c_1|p=0.4)+P(Y\ge c_2|p=0.4)$ is as close as possible to 0.1 without being larger than 0.1.
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+```{r, message=F, error=F, warning=F}
+rm(list=ls())
+result<-matrix(NA, nrow=100, ncol=3)
+n=1
+for(i in 0:9){
+  for(j in 0:9){
+    p=pbinom(q=i, size=9, prob=0.4, lower.tail=T)+pbinom(q=j, size=9, prob=0.4, lower.tail=F)+
+      dbinom(x=j, size=9, prob=0.4)
+    result[n,1]=i
+    result[n,2]=j
+    result[n,3]=p
+    n=n+1
+  }
+}
+result<-result[order(result[,3]),]
+result[which(result[,3]<0.1),]
+```
+
+So we can see that the values of $c_1$ and $c_2$ that make $P(Y\le c_1|p=0.4)+P(Y\ge c_2|p=0.4)$ as close to 0.1 as possible are 1 and 7.
+
+\setlength{\leftskip}{0cm}
+
+###b.
+Let $\delta$ be the test that rejects $H_0$ if either $Y\le c_1$ or $Y\ge c_2$. What is the size of the test $\delta_c$?
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+
+If we reject the null hypothesis when either $Y\le c_1$ or $Y\ge c_2$, the size of the test is
+
+$$P(Y\le 1|p=0.4)+P(Y\ge 7|p=0.4)\approx 0.096$$
+
+
+\setlength{\leftskip}{0cm}
+
+###c.
+Draw a graph of the power function $\delta_c$.
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+```{r}
+rm(list=ls())
+size<-vector()
+for(i in seq(from=0, to=1, by=0.01)){
+  size<-append(size, pbinom(q=1, size=9, prob=i, lower.tail=T)+
+                 pbinom(q=7, size=9, prob=i, lower.tail=F)+dbinom(x=7, size=9, prob=i))
+}
+n<-seq(from=0, to=1, by=0.01)
+plot(n, size, type="l", ylab="Size of Test", xlab="True Probability", main="Power Function")
+```
+
+
+
+\setlength{\leftskip}{0cm}
+
+
+##4. 
+
+The file '`Prob4_data.txt`' contains 30 observations from a Gamma distribution with unkonwn parameters $\alpha$ and $\beta$.
+
+###a.
+
+Plot a histogram of the data and overlay the respective density curve.
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+```{r, message=F, error=F, warning=F}
+rm(list=ls())
+setwd("/Users/patrick/Desktop/Econ 403A/Assignments/Homework 2")
+data<-read.table("Prob4_data.txt")
+gamma<-as.numeric(data$V1)
+hist(gamma, col="gray", freq=F)
+lines(density(gamma), col="red")
+```
+
+
+
+
+\setlength{\leftskip}{0cm}
+
+
+###b.
+
+Compute the Method of Moments estimates of the parameters, $\hat{\alpha}$ and $\hat{\beta}$.
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+```{r, message=F, error=F, warning=F}
+n=length(gamma)
+mean=mean(gamma)
+sum=sum(gamma^2)
+alpha=mean^2/((1/n)*sum-mean^2)
+beta=mean/((1/n)*sum-mean^2)
+print(alpha)
+print(beta)
+```
+
+We get $\hat{\alpha}\approx0.58$ and $\hat{\beta}\approx1.08$.
+
+\setlength{\leftskip}{0cm}
+
+
+###c.
+
+Generate 1000 new samples from your data and compute the Bootstrap mean, standard errors, and 95% confidence intervals of the parameters and compare them against your results from part (b).
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+```{r}
+library(boot)
+fun1<-function(data, indices){
+  sample=data[indices]
+  n=length(sample)
+  sample_mean=mean(sample)
+  sample_alpha=sample_mean^2/((1/n)*sum(sample^2)-sample_mean^2)
+  return(sample_alpha)
+}
+alpha_boot<-boot(gamma, fun1, R=1000)
+alpha_mean=mean(alpha_boot$t)
+alpha_se=sd(alpha_boot$t)
+alpha_ci<-boot.ci(boot.out=alpha_boot, type=c("norm","basic","perc","bca"))
+cat("The Bootstrap mean of the shape parameter is", alpha_mean, "\n")
+cat("The Bootstrap standard error of the shape parameter is", alpha_se, "\n")
+print(alpha_ci)
+```
+
+```{r, message=F, warning=F, error=F}
+alpha_ci1=alpha_ci$bca[,4:5]
+hist(alpha_boot$t[,1], main="Bootstrap Values of Alpha", xlab="Alpha", 
+     col="grey", freq=F)
+abline(v=alpha_ci1, col="red", lty="dotted")
+abline(v=alpha_mean, col="red")
+lines(density(alpha_boot$t))
+```
+
+```{r}
+library(boot)
+fun2<-function(data, indices){
+  sample=data[indices]
+  n=length(sample)
+  sample_mean=mean(sample)
+  sample_beta=sample_mean/((1/n)*sum(sample^2)-sample_mean^2)
+  return(sample_beta)
+}
+beta_boot<-boot(gamma, fun2, R=1000)
+beta_mean=mean(beta_boot$t)
+beta_se=sd(beta_boot$t)
+beta_ci<-boot.ci(boot.out=beta_boot, type=c("norm","basic","perc","bca"))
+cat("The Bootstrap mean of the rate parameter is", beta_mean, "\n")
+cat("The Bootstrap standard error of the rate parameter is", beta_se, "\n")
+print(beta_ci)
+```
+
+```{r, message=F, warning=F, error=F}
+beta_ci1=beta_ci$bca[,4:5]
+hist(beta_boot$t[,1], main="Bootstrap Values of Beta", xlab="Beta", 
+     col="grey", ylim=c(0, 1.6), freq=F)
+abline(v=beta_ci1, col="red", lty="dotted")
+abline(v=beta_mean, col="red")
+lines(density(beta_boot$t))
+```
+
+
+We can see that our bootstrap means are larger than MOM estimates, but the former's confidence intervals generated by the bootstrap process contain the latter.
+
+\setlength{\leftskip}{0cm}
+
+##5.
+
+A 1992 article in the Journal of the *American Medical Association* ("A Critical Appraisal of 98.6 Degrees F, the Upper Limit of the Normal Body Temperature, and Other Legacies of Carl Reinhold August Wunderlich") reported body temperature, gender, and heart rate for a number of subjects. The body temperature for 25 female subjects follow: 97.8, 97.2, 97.4, 97.6, 97.8, 97.9, 98.0, 98.0, 98.0, 98.1, 98.2, 98.3, 98.3, 98.4, 98.4, 98.4, 98.5, 98.6, 98.6, 98.7, 98.8, 98.8, 98.9, 98.9, and 99.0.
+
+###a.
+
+Test the hypothesis $H_0:\mu=98.6$ versus $H_1:\mu\neq98.6$, using $\alpha=0.05$. Find the $P$-value.
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+```{r, message=F, warning=F, error=F}
+rm(list=ls())
+library(stats)
+library(distrEx)
+library(MASS)
+temp<-c(97.8, 97.2, 97.4, 97.6, 97.8, 97.9, 98.0, 98.0, 98.0, 98.1, 
+        98.2, 98.3, 98.3, 98.4, 98.4, 98.4, 98.5, 98.6, 98.6, 98.7, 
+        98.8, 98.8, 98.9, 98.9, 99.0)
+t.test(temp, mu=98.6, conf.level=0.95)
+```
+
+Since our p-value is 0.001912, a lot smaller than $\alpha$, we should reject $H_0$. 
+
+\setlength{\leftskip}{0cm}
+
+###b.
+
+Check the assumption that female body temperature is normally distributed.
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+```{r}
+hist(temp, main="Female Body Temperatures", xlab="Temperature", freq=F, 
+     col="grey", breaks=9, xlim=c(97, 99.5))
+lines(density(temp), col="red")
+```
+
+```{r, warning=F, message=F, error=F}
+normalfit<-fitdistr(temp, "normal")
+normal<-rnorm(n=25, mean=normalfit[["estimate"]][["mean"]], sd=normalfit[["estimate"]][["sd"]])
+ks.test(temp, normal)
+```
+
+A large p-value suggests that female body temperature does follow a normal distribution.
+
+
+\setlength{\leftskip}{0cm}
+
+###c.
+
+Compute the power of the test if the true mean female body temperature is as low as 98.0.
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+```{r}
+library(pwr)
+d=(98.6-98)/sd(temp)
+pwr.t.test(n=25, d, sig.level=0.05, type="one.sample", alternative="two.sided")
+```
+
+So the power of the test is approximately 99.9%, which means that the probebility of rejecting the null hypothesis when it is false is almost 100%.
+
+\setlength{\leftskip}{0cm}
+
+###d.
+
+What sample size would be required to detect a true mean female body temperature as low as 98.2 if we wanted the power of the test to be at least 0.9?
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+```{r}
+d=(98.6-98.2)/sd(temp)
+pwr.t.test(d=d, sig.level=0.05, type="one.sample", alternative="two.sided", power=0.9)
+```
+
+So we can see that we need approximately a sample size of 18 in order for the power of the test to be at least 0.9.
+
+\setlength{\leftskip}{0cm}
+
+###e.
+
+Explain how the question in part (a) could be answered by constructing a two-sided confidence interval on the mean female body temperature.
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+By definition, 95% confidence intervals in the long run have a 95%` success rate of capturing the real population mean; or in other words, among all the confidence intervals established using different samples, only 5% of them do not capture population mean. In this case, if the two-sided confidence interval does not contain our hypothesis, it is very likely that our hypothesis is wrong.
+
+
+
+\setlength{\leftskip}{0cm}
+
+##6.
+
+Suppose a sample of size 1 is taken from the pdf $f_Y(y)=(1/\lambda)e^{-y/\lambda}$, $y>0$, for the purpose of testing
+
+$$H_0:\lambda=1$$
+
+
+$$H_1:\lambda>1$$
+The null hypothesis will be rejected if $y\ge 3.20$.
+
+###a.
+
+Calculate the probability of committing a Type I error.
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+By definition, the probability of commiting a Type I error is given as P(Reject $H_0$|$H_0$ is true). In this case, it can be written as P($y\ge3.2$|$\lambda=1$), which is
+
+$$\int _{3.2}^{\infty}e^{-y}dy$$
+
+```{r}
+rm(list=ls())
+exp1<-function(y){
+  return(dexp(y, rate=1))
+}
+integrate(exp1, lower=3.2, upper="infinity")
+```
+
+
+
+\setlength{\leftskip}{0cm}
+
+###b.
+
+Calculate the probability of committing a Type II error when $\lambda=4/3$.
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+By definition, the probability of commiting a Type II error is given as P(Fail to reject $H_0$|$H_0$ is false). In this case, it can be written as P($y\le3.2$|$\lambda=\frac{4}{3}$), which is
+
+$$\int _{0}^{3.2}\frac{3}{4}e^{-\frac{3}{4}y}dy$$
+
+```{r}
+exp2<-function(y){
+  return(dexp(y, rate=3/4))
+}
+integrate(exp2, lower=0, upper=3.2)
+```
+
+
+\setlength{\leftskip}{0cm}
+
+###c.
+
+Draw a diagram that shows the $\alpha$ and $\beta$ calculated in parts (a) and (b)
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+```{r}
+alpha<-vector()
+exp1<-function(y){
+  return(dexp(y, rate=1))
+}
+for(l in seq(from=0, to=4, by=0.1)){
+  alpha<-append(alpha, integrate(exp1, lower=l, upper="infinity")[["value"]])
+}
+
+beta<-vector()
+exp2<-function(y){
+  return(dexp(y, rate=3/4))
+}
+for(u in seq(from=0, to=4, by=0.1)){
+  beta<-append(beta, integrate(exp2, lower=0, upper=u)[["value"]])
+}
+
+t=seq(from=0, to=4, by=0.1)
+plot(t, alpha, type="l", col="red", ylab="Alpha", xlab="Lower Bound")
+plot(t, beta, type="l", col="blue", ylab="Beta", xlab="Upper Bound")
+```
+
+
+\setlength{\leftskip}{0cm}
+
+
+##7. Evans & Rosenthal: 5.4.12
+
+Suppose we have a population of 10,000 elements, each with a unique label from the set {1,2,3,...,10,000}.
+
+###a.
+
+Generate a sample of 500 labels from this population using simple random sampling.
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+```{r}
+sample1<-sample(1:10000, size=500, replace=F)
+print(sample1)
+```
+
+
+
+\setlength{\leftskip}{0cm}
+
+###b.
+
+Generate a sample of 500 labels from this population using i.i.d. sampling.
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+```{r}
+sample2<-sample(1:10000, size=500, replace=T)
+print(sample2)
+```
+
+
+
+\setlength{\leftskip}{0cm}
+
+##8. Evans & Rosenthal: 5.5.18
+
+Generate a sample of 30 from an $N(10,2)$ distribution and a sample of 1 from an $N(30,2)$ distribution. Combine these together to make a single sample of 31.
+
+###a.
+
+Produce a boxplot of these data.
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+```{r}
+sample1<-rnorm(n=30, mean=10, sd=2)
+sample2<-rnorm(n=1, mean=30, sd=2)
+sample<-append(sample1, sample2)
+boxplot(sample, col="grey")
+```
+
+
+
+\setlength{\leftskip}{0cm}
+
+###b.
+
+What do you notice about this plot?
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+There is a single outlier in the boxplot, and it comes from the $N(30,2)$ distribution.
+
+
+
+\setlength{\leftskip}{0cm}
+
+###c.
+
+Based on the boxplot, what characteristics do you think would be appropriate to measure the location and spread of the distribution? Explain why.
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+
+Since this boxplot shows an outlier that actually comes from a different distribution, it suggests that we can just ignore the outlier. Thus, the characteristics that best measure the location and spread are still the mean and the variance.
+
+
+\setlength{\leftskip}{0cm}
+
+
+##9. Evans & Rosenthal: 6.2.17
+
+A likelihood function is given by $\exp(-(\theta-1)^2/2)+3\exp(-(\theta-2)^2/2)$ for $\theta \in R^1$. Numerically approximate the MLE by evaluating this function at 1000 equispaced points in $(-10,10]$. Also plot the likelihood function. Comment on the form of likelihood intervals.
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+```{r}
+rm(list=ls())
+y<-vector()
+n<-seq(from=-10, to=10, by=0.02)
+for(i in seq(from=-10, to=10, by=0.02)){
+  y<-append(y,exp(-(i-1)^2/2)+3*exp(-(i-2)^2/2))
+}
+n[which(y==max(y))]
+```
+
+```{r}
+plot(n, y, type="l", xlab="Theta", ylab="Likelihood")
+abline(v=n[which(y==max(y))], lty=3, col="red")
+```
+
+
+\setlength{\leftskip}{0cm}
+
+
+##10. Evans & Rosenthal: 6.2.25
+
+Suppose the proportion of left-handed individuals in a population is $\theta$. Based on a simple random sample of 20, you observe four left-handed individuals.
+
+###a.
+
+Assuming the sample size is small relative to the population size, plot the log-likelihood function and determine the MLE.
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+When the sample size is small relative to the population size, the number of left-handed individuals follows a binomial distribution:
+
+$$P(X=x)=\left( \begin{array}{c} 20 \\ x \end{array} \right) \theta^x(1-\theta)^{20-x}$$
+
+Here our $x$ is 4; plug it in we get
+
+$$P(X=4)=\left( \begin{array}{c} 20 \\ 4 \end{array} \right) \theta^4(1-\theta)^{16}$$
+Taking logrithm, we get
+
+$$\ln P(X=4)=\ln \left( \begin{array}{c} 20 \\ 4 \end{array} \right) + 4\ln \theta+ 16\ln (1-\theta) $$
+
+```{r}
+rm(list=ls())
+y<-vector()
+theta<-seq(from=0, to=1, by=0.01)
+for(i in seq(from=0, to=1, by=0.01)){
+  y<-append(y,log(choose(20,4))+4*log(i)+16*log(1-i))
+}
+plot(theta, y, type="l", xlab="Theta", ylab="Likelihood", main="Log-Likelihood Function")
+abline(v=theta[which(y==max(y))], lty=3, col="red")
+```
+
+\setlength{\leftskip}{0cm}
+
+###b.
+
+If instead the population size is only 50, then plot the log-likelihood function and determine the MLE. (Hint: Remember that the number of left-handed individuals follows a hypergeometric distribution. This forces $\theta$ to be of the form $i/50$ for some integer $i$ between 4 and 34. From a tabulation of the log-likelihood, you can obtain the MLE.)
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+When the population size $N$ is 50, the probability that among the 20 people selected 4 are left-handed is given by:
+
+$$P(X=4)=\frac{\left( \begin{array}{c} n \\ 4 \end{array} \right) \left( \begin{array}{c} 50-n \\ 16 \end{array} \right)}{\left( \begin{array}{c} 50 \\ 20 \end{array} \right)}$$
+
+where $n$ is the total number of left-handed individuals in the population and $n=50\theta$.
+
+This equation tells us the $n\ge4$ and $16\le50-n$, and hence we have $4\le n\le 34$.
+
+Take logrithm of the likelihood function, and we get:
+
+$$\ln P(X=4)=\ln \left( \begin{array}{c} n \\ 4 \end{array} \right) + \ln \left( \begin{array}{c} 50-n \\ 16 \end{array} \right) -\ln \left( \begin{array}{c} 50 \\ 20 \end{array} \right)$$
+
+```{r}
+x<-4:34
+y=log(choose(x, 4))+log(choose(50-x, 16))-log(choose(50,20))
+plot(y, type="l", xlab="Number of Left-handed Individuals", 
+     ylab="Log Likelihood", main="Log-Likelihood Function")
+abline(v=x[which(y==max(y))], lty=3, col="red")
+```
+
+Since the $n$ that maximized the log-likelihood function is 10, our $\hat\theta$ should be 10/50, which is 0.2.
+
+
+\setlength{\leftskip}{0cm}
+
+
+##11. Evans & Rosenthal: 6.3.22
+
+Generate $10^4$ samples of sizes $n=5$ from the $N(0,1)$ distribution. For each of these samples, calculate the interval $(\bar{x}-s/\sqrt{5}, \bar{x}+s/\sqrt{5})$, where $s$ is the sample standard deviation, and compute the proportion of times this interval contains $\mu$. Repeat this simulation with $n=10$ and 100 and compare your results.
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+```{r, message=F, warning=F, error=F}
+normal_ci<-function(size=5, trial=10000){
+  size=size
+  trial=trial
+  n=0
+  samples<-matrix(NA, ncol=size, nrow=trial)
+  ci<-matrix(NA, ncol=2, nrow=trial)
+  for(i in 1:10000){
+    samples[i,]<-rnorm(n=size, mean=0, sd=1)
+    mean=mean(samples[i,])
+    sd=sd(samples[i,])
+    lower=mean-sd/sqrt(size)
+    upper=mean+sd/sqrt(size)
+    if(0<upper&0>lower){
+      n=n+1
+    }
+    ci[i,1]<-lower
+    ci[i,2]<-upper
+  }
+  proportion=n/trial
+  cat("The proportion of times that this interval contains the real mean when sample size is", 
+      size, "is ", proportion, "\n")
+}
+
+normal_ci(5)
+normal_ci(10)
+normal_ci(100)
+normal_ci(500)
+```
+
+
+\setlength{\leftskip}{0cm}
+
+
+##12. Evans & Rosenthal: 6.4.17
+
+For the data of Exercise 6.4.1, use the plug-in MLE to estimate $F(3)$ for an $N(\mu, \sigma^2)$ distribution. Use bootstrapping to estimate the MSE of this estimate for $m=10^3$ and $m=10^4$.
+
+\includegraphics[width=\textwidth]{Q12.jpg}
+
+
+
+**Answer:**
+
+\setlength{\leftskip}{1cm}
+
+```{r, message=F, error=F, warning=F}
+rm(list=ls())
+library(stats)
+library(distrEx)
+library(MASS)
+library(boot)
+data<-c(3.27, -1.24, 3.97, 2.25, 3.47, -0.09, 7.45, 6.20, 3.74, 4.12, 
+        1.42, 2.75, -1.48, 4.97, 8.00, 3.26, 0.15, -3.64, 4.88, 4.55)
+MLE<-fitdistr(data, densfun="normal")
+p<-pnorm(q=3, mean=MLE[["estimate"]][["mean"]], sd=MLE[["estimate"]][["sd"]])
+
+fun<-function(data, indices){
+  sample<-data[indices]
+  MLE1<-fitdistr(sample, densfun="normal")
+  return(pnorm(q=3, mean=MLE1[["estimate"]][["mean"]], sd=MLE1[["estimate"]][["sd"]]))
+}
+boot1<-boot(data, statistic=fun, R=1000)
+MSE1<-sd(boot1$t)^2+(mean(boot1$t)-p)^2
+
+boot2<-boot(data, statistic=fun, R=10000)
+MSE2<-sd(boot2$t)^2+(mean(boot2$t)-p)^2
+
+cat("When m=1000, the bootstrap MSE is", MSE1, "\n")
+cat("When m=10000, the bootstrap MSE is", MSE2, "\n")
+```
+
+
+
+\setlength{\leftskip}{0cm}
+
+
+
+
